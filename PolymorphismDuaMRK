@@ -1,0 +1,53 @@
+package pbotugas1;
+class Satpam {
+    void sapa() {
+        System.out.println("Hallo! Bagaimana Saya Bisa Membantu?");
+    }
+}
+
+class SatpamCekID extends Satpam {
+    @Override
+    void sapa() {
+        System.out.println("Tolong Tunjukan ID Anda!");
+    }
+}
+
+class Pengemudi extends Satpam {
+    @Override
+    void sapa() {
+        System.out.println("Tolong Turun Sebentar Dari Kendaraan Anda!");
+    }
+}
+
+class JagaTamu extends Satpam {
+    @Override
+    void sapa() {
+        System.out.println("Ada Keperluan Apa?");
+    }
+
+    void sapa(String personTipe) {
+        if ("PR".equalsIgnoreCase(personTipe)) {
+            System.out.println("Selamat Pagi Bu!");
+        } else if ("LK".equalsIgnoreCase(personTipe)) {
+            System.out.println("Selamat Datang Pak!");
+        } else {
+            sapa();
+        }
+    }
+}
+
+public class PolymorphismDuaMRK {
+    public static void main(String[] args) {
+        Satpam pakSatpam1 = new SatpamCekID();
+        Satpam pakSatpam2 = new JagaTamu();
+        Satpam pakSatpam3 = new Pengemudi();
+
+        pakSatpam1.sapa();
+
+        ((JagaTamu) pakSatpam2).sapa("LK");
+        ((JagaTamu) pakSatpam2).sapa("PR");
+        pakSatpam2.sapa();
+
+        pakSatpam3.sapa();
+    }
+}
